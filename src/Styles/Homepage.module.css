@@ -1,0 +1,8 @@
+.cards{
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.card{
+height:200px;
+}

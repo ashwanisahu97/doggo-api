@@ -8,8 +8,6 @@ const AllRoutes = () => {
       <Routes>
           <Route path="/" element={ <Homepage/>}></Route>
           <Route path="/breedDetails/:id" element={ <BreedDetails/>}></Route>
-          <Route></Route>
-          <Route></Route>
     </Routes>
   )
 }
