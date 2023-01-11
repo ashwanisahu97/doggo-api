@@ -13,19 +13,22 @@ const Homepage = () => {
         console.log(response);
         const data = await response.json();
         console.log(data);
-        // setBreeds(data.message);
+        setBreeds(data.message);
     }
 
   return (
+      <div>
+          <div>{JSON.stringify(breeds)}</div>
     <div className={styles.cards}>
     {
         breeds?.map((element) => { 
             return (
                 <div className={styles.card} key={element.id}>
-                    <Link to={`/puppy/${ element}`}> <p>{ element} </p> </Link>
+                    <Link to={`/breedDetails/${ element}`}> <p>{ element} </p> </Link>
                 </div>
             )
         })}
+</div>
 </div>
   )
 }
