@@ -15,12 +15,15 @@ const Register=()=> {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+      e.preventDefault();
+      alert(JSON.stringify(formValues))
+      console.log("formValues", formValues);
   };
 
 
   return (
-    <div>
+      <div>
+          <p>{JSON.stringify(formValues)}</p>
       <form onSubmit={handleSubmit}>
         <h1>Login Form</h1>
         <div></div>
