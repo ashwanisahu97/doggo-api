@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import checkValidation from "../Utils/checkValidation";
 
 const Register=()=> {
     const initialValues = {
@@ -7,7 +8,12 @@ const Register=()=> {
         email: "",
         password: ""
     };
-  const [formValues, setFormValues] = useState(initialValues);
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({})
+
+    useEffect(() => { 
+        alert(JSON.stringify(formErrors))
+    },[formErrors])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,11 +22,12 @@ const Register=()=> {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      alert(JSON.stringify(formValues))
+    //   alert(JSON.stringify(formValues))
       console.log("formValues", formValues);
+      setFormErrors(checkValidation(formValues))
   };
 
-
+  
   return (
       <div>
           <p>{JSON.stringify(formValues)}</p>
