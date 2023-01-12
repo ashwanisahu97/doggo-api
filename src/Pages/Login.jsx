@@ -21,7 +21,10 @@ const Login = () => {
             return navigate("/home")
          }
      
-     },[])
+    }, [])
+    useEffect(() => { 
+        // alert(JSON.stringify(formErrors))
+    }, [formErrors])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,7 +36,8 @@ const Login = () => {
         //   alert(JSON.stringify(formValues))
         console.log("formValues", formValues);
         setFormErrors(checkValidation(formValues))
-        if (Object.keys(formErrors).length === 0){
+        setIsSubmit(true);
+        if (isSubmit&&Object.keys(formErrors).length === 0){
             const users = JSON.parse(localStorage.getItem("users")) || [];
             if (users.length === 0) {
                 alert("please enter the correct details!!")
@@ -52,7 +56,6 @@ const Login = () => {
   
   return (
     <div className={styles.container}>
-      <div>{JSON.stringify(formValues, undefined, 2)}</div>
 
     <form onSubmit={handleSubmit}>
       <h1>Login form</h1>

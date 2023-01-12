@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import styles from "../Styles/Navbar.module.css"
 const Navbar = () => {
   const handleLogout = () => { 
     // alert("clicked")
@@ -9,13 +9,15 @@ const Navbar = () => {
     alert("logged out successfully")
   }
   return (
-      <div style={{ display: "flex",gap:"10px"}}>
-          <Link to="/"> <div>Login</div> </Link>
-          <Link to="/home"> <div>Homepage</div> </Link>
-          <Link to="/breedDetails/:breedName"> <div>BreedDetails</div> </Link>
-      <Link to="/signup"> <div>Signup</div> </Link>
-      <button onClick={handleLogout}>Logout</button>
-      </div>
+    <nav classname={ styles.nav}>
+      <div> <Link to="/home"> Homepage</Link></div> 
+
+      <div className={ styles.loginSignup}>
+          <div><Link to="/"> Login</Link></div> 
+       <div><Link to="/signup">Signup</Link></div> 
+        <button onClick={handleLogout}>Logout</button>
+        </div>
+      </nav>
   )
 }
 

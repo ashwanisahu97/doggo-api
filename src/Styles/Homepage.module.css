@@ -2,6 +2,10 @@
 
 .card{
 height:200px;
+box-shadow:rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+margin-bottom: 15px; 
+border-radius:10px;
+padding:10px;
 }
 
 
@@ -10,10 +14,14 @@ height:200px;
     grid-template-columns: repeat(4,1fr);
     grid-gap:15px;
 }
+.container{
+    padding-top: 100px;
+}
 
 nav{
     margin-bottom:10px;
 }
+
 
 @media only screen and (min-width:0px) and (max-width:375px){
     .cards{

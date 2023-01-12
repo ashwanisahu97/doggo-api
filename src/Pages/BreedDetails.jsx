@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
+import styles from "../Styles/Homepage.module.css"
 const BreedDetails = () => {
     let { breedName } = useParams();
 
@@ -17,7 +17,7 @@ const BreedDetails = () => {
        setImage(data.message)
     }
     return (
-        <div style={{ display: "flex",alignItems:"center",justifyContent:"center" }}>
+        <div style={{ display: "flex",alignItems:"center",justifyContent:"center",paddingTop:"100px" }}>
             <div style={{width:"400px",height:"400px",border:"2px solid red"}}>
 <img width="100%" height="100%" src={ image} alt="breed random image" />
             </div>

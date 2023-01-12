@@ -13,13 +13,9 @@ const Register=()=> {
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false);
     const navigate = useNavigate();
-    // useEffect(() => { 
-    //     // alert(JSON.stringify(formErrors))
-    // }, [formErrors])
-    // useEffect(() => { 
-    //     alert("inside useEffect")
-        
-    // },[isSubmit,formErrors])
+    useEffect(() => { 
+       
+    }, [formErrors])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,26 +24,20 @@ const Register=()=> {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-    //   alert(JSON.stringify(formValues))
       console.log("formValues", formValues);
       setFormErrors(checkValidation(formValues))
-      setIsSubmit(true)
+      setIsSubmit(true);
       if (isSubmit&&Object.keys(formErrors).length===0) {
-        alert("going to localstorage")
         const users = JSON.parse(localStorage.getItem("users")) || [];
         users.push(formValues);
           localStorage.setItem("users", JSON.stringify(users))
+          navigate("/")
       }
-      navigate("/login")
+      console.log(formErrors);
     }
 
   return (
     <div className={styles.container}>
-    {Object.keys(formErrors).length === 0 && isSubmit ? (
-      <div className="">Signed up successfully</div>
-    ) : (
-      <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-    )}
 
     <form onSubmit={handleSubmit}>
       <h1>Create an account</h1>

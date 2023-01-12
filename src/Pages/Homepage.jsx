@@ -20,8 +20,7 @@ const Homepage = () => {
     }
 
   return (
-      <div>
-          <div>{JSON.stringify(breeds)}</div>
+      <div className={ styles.container}>
     <div className={styles.cards}>
     {
         breeds?.map((element) => { 
