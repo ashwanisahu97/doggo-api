@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import checkValidation from "../Utils/checkValidation";
-
+import styles from "../Styles/Register.module.css"
 const Register=()=> {
     const initialValues = {
         username: "",
@@ -10,6 +10,7 @@ const Register=()=> {
     };
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({})
+    const [isSubmit, setSubmit] = useState(false);
 
     useEffect(() => { 
         alert(JSON.stringify(formErrors))
@@ -29,46 +30,58 @@ const Register=()=> {
 
   
   return (
-      <div>
-          <p>{JSON.stringify(formValues)}</p>
-      <form onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
-        <div></div>
-        <div>
-          <div>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formValues.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          </div>
-          <button>Submit</button>
+    <div className={styles.container}>
+    {Object.keys(formErrors).length === 0 && isSubmit ? (
+      <div className="">Signed in successfully</div>
+    ) : (
+      <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+    )}
+
+    <form onSubmit={handleSubmit}>
+      <h1>Create an account</h1>
+      <div className="styles.form">
+        <div className={styles.inputField}>
+                      <label>Username</label>
+                      <br />
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formValues.username}
+                          onChange={handleChange}
+                          required
+          />
         </div>
-      </form>
-    </div>
+        <p>{formErrors.username}</p>
+        <div className={styles.inputField}>
+                      <label>Email</label>
+                      <br />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={formValues.email}
+                          onChange={handleChange}
+                          required
+          />
+        </div>
+        <p>{formErrors.email}</p>
+        <div className={styles.inputField}>
+                      <label>Password</label>
+                      <br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formValues.password}
+            onChange={handleChange}
+          required/>
+        </div>
+        <p>{formErrors.password}</p>
+        <button className={styles.submit}>Register</button>
+      </div>
+    </form>
+  </div>
   );
 }
 
