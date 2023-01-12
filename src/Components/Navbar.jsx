@@ -6,6 +6,8 @@ const Navbar = () => {
       <div style={{ display: "flex",gap:"10px"}}>
           <Link to="/"> <div>Homepage</div> </Link>
           <Link to="/breedDetails/:breedName"> <div>BreedDetails</div> </Link>
+          <Link to="/login"> <div>Login</div> </Link>
+          <Link to="/signup"> <div>Signup</div> </Link>
       </div>
   )
 }
