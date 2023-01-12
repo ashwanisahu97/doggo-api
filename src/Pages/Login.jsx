@@ -5,6 +5,7 @@ import styles from "../Styles/Register.module.css"
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    let isAuth = JSON.parse(localStorage.getItem("isAuth"));
     const initialValues = {
         email: "",
         password: ""
@@ -13,9 +14,14 @@ const Login = () => {
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
-        // alert(JSON.stringify(formErrors))
-    }, [formErrors])
+       
+        if (isAuth) { 
+            return navigate("/home")
+         }
+     
+     },[])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,13 +42,13 @@ const Login = () => {
                     return e.email === formValues.email && e.password === formValues.password
                 })
                 if (temp.length !== 0) { 
-                    navigate("/")
+                    localStorage.setItem("isAuth",true)
+                    navigate("/home")
                 }
                     }
             }
     }
-
-
+   
   
   return (
     <div className={styles.container}>

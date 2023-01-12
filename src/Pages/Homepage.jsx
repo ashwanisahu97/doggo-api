@@ -7,6 +7,9 @@ const Homepage = () => {
     useEffect(() => {
         fetchData();
     }, [])
+    useEffect(() => {
+
+     },[])
 
     const fetchData = async() => { 
         const response = await fetch("https://dog.ceo/api/breeds/list");
@@ -23,7 +26,7 @@ const Homepage = () => {
     {
         breeds?.map((element) => { 
             return (
-                <div className={styles.card} key={element.id}>
+                <div className={styles.card} key={element}>
                     <Link to={`/breedDetails/${ element}`}> <p>{ element} </p> </Link>
                 </div>
             )

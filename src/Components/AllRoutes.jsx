@@ -8,9 +8,9 @@ import Register from '../Pages/Register'
 const AllRoutes = () => {
   return (
       <Routes>
-          <Route path="/" element={ <Homepage/>}></Route>
+          <Route path="/" element={ <Login/>}></Route>
+          <Route path="/home" element={ <Homepage/>}></Route>
           <Route path="/breedDetails/:breedName" element={ <BreedDetails/>}></Route>
-          <Route path="/login" element={ <Login/>}></Route>
           <Route path="/signup" element={ <Register/>}></Route>
     </Routes>
   )

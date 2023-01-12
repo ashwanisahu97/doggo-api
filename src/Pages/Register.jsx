@@ -39,9 +39,8 @@ const Register=()=> {
           localStorage.setItem("users", JSON.stringify(users))
       }
       navigate("/login")
-    };
+    }
 
-  
   return (
     <div className={styles.container}>
     {Object.keys(formErrors).length === 0 && isSubmit ? (
