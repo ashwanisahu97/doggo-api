@@ -13,7 +13,7 @@ const Register=()=> {
     const [isSubmit, setSubmit] = useState(false);
 
     useEffect(() => { 
-        alert(JSON.stringify(formErrors))
+        // alert(JSON.stringify(formErrors))
     },[formErrors])
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ const Register=()=> {
   return (
     <div className={styles.container}>
     {Object.keys(formErrors).length === 0 && isSubmit ? (
-      <div className="">Signed in successfully</div>
+      <div className="">Signed up successfully</div>
     ) : (
       <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
     )}
