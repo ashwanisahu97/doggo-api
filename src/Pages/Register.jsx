@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import checkValidation from "../Utils/checkValidation";
 import styles from "../Styles/Register.module.css"
+import { useNavigate } from "react-router-dom";
 const Register=()=> {
     const initialValues = {
         username: "",
@@ -11,10 +12,14 @@ const Register=()=> {
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false);
-
-    useEffect(() => { 
-        // alert(JSON.stringify(formErrors))
-    },[formErrors])
+    const navigate = useNavigate();
+    // useEffect(() => { 
+    //     // alert(JSON.stringify(formErrors))
+    // }, [formErrors])
+    // useEffect(() => { 
+    //     alert("inside useEffect")
+        
+    // },[isSubmit,formErrors])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +32,13 @@ const Register=()=> {
       console.log("formValues", formValues);
       setFormErrors(checkValidation(formValues))
       setIsSubmit(true)
+      if (isSubmit&&Object.keys(formErrors).length===0) {
+        alert("going to localstorage")
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push(formValues);
+          localStorage.setItem("users", JSON.stringify(users))
+      }
+      navigate("/login")
     };
 
   

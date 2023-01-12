@@ -1,7 +1,8 @@
 const checkValidation = (values) => { 
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (values.username&&values.username.length===0) {
+    if (values.username && values.username.length===0) {
+        alert(JSON.stringify(values.username))
       errors.username = "Username is required!";
     }
     if (values.email.length===0) {

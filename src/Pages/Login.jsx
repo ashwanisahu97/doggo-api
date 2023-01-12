@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import checkValidation from "../Utils/checkValidation";
 import styles from "../Styles/Register.module.css"
+import { useNavigate } from "react-router-dom";
 
-const Login=()=> {
+const Login = () => {
     const initialValues = {
         email: "",
         password: ""
@@ -11,35 +12,41 @@ const Login=()=> {
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false);
-
-    useEffect(() => { 
+    const navigate = useNavigate();
+    useEffect(() => {
         // alert(JSON.stringify(formErrors))
-    },[formErrors])
+    }, [formErrors])
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-      e.preventDefault();
-    //   alert(JSON.stringify(formValues))
-      console.log("formValues", formValues);
-      setFormErrors(checkValidation(formValues))
-      setIsSubmit(true)
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
     };
-    if (isSubmit) { 
-        alert( alert(JSON.stringify(formValues)))
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //   alert(JSON.stringify(formValues))
+        console.log("formValues", formValues);
+        setFormErrors(checkValidation(formValues))
+        if (Object.keys(formErrors).length === 0){
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            if (users.length === 0) {
+                alert("please enter the correct details!!")
+            } else {
+                let temp = users.filter((e) => {
+                    return e.email === formValues.email && e.password === formValues.password
+                })
+                if (temp.length !== 0) { 
+                    navigate("/")
+                }
+                    }
+            }
     }
+
 
   
   return (
     <div className={styles.container}>
-    {Object.keys(formErrors).length === 0 && isSubmit ? (
-      <div className="">Signed in successfully</div>
-    ) : (
-      <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-    )}
+      <div>{JSON.stringify(formValues, undefined, 2)}</div>
 
     <form onSubmit={handleSubmit}>
       <h1>Login form</h1>
