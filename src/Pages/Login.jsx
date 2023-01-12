@@ -10,7 +10,7 @@ const Login=()=> {
     };
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({})
-    const [isSubmit, setSubmit] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     useEffect(() => { 
         // alert(JSON.stringify(formErrors))
@@ -26,7 +26,11 @@ const Login=()=> {
     //   alert(JSON.stringify(formValues))
       console.log("formValues", formValues);
       setFormErrors(checkValidation(formValues))
-  };
+      setIsSubmit(true)
+    };
+    if (isSubmit) { 
+        alert( alert(JSON.stringify(formValues)))
+    }
 
   
   return (

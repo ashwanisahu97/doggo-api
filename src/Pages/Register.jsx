@@ -10,7 +10,7 @@ const Register=()=> {
     };
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({})
-    const [isSubmit, setSubmit] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     useEffect(() => { 
         // alert(JSON.stringify(formErrors))
@@ -26,7 +26,8 @@ const Register=()=> {
     //   alert(JSON.stringify(formValues))
       console.log("formValues", formValues);
       setFormErrors(checkValidation(formValues))
-  };
+      setIsSubmit(true)
+    };
 
   
   return (
@@ -49,7 +50,6 @@ const Register=()=> {
             placeholder="Username"
             value={formValues.username}
                           onChange={handleChange}
-                          required
           />
         </div>
         <p>{formErrors.username}</p>
@@ -57,12 +57,11 @@ const Register=()=> {
                       <label>Email</label>
                       <br />
           <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            value={formValues.email}
+                          type="text"
+                          name="email"
+                          placeholder="Email"
+                          value={formValues.email}
                           onChange={handleChange}
-                          required
           />
         </div>
         <p>{formErrors.email}</p>
@@ -75,7 +74,7 @@ const Register=()=> {
             placeholder="Password"
             value={formValues.password}
             onChange={handleChange}
-          required/>
+        />
         </div>
         <p>{formErrors.password}</p>
         <button className={styles.submit}>Register</button>
